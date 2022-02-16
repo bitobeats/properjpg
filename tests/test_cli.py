@@ -28,8 +28,8 @@ def test_single_file(
     original_width: int,
     original_height: int,
     img_exist: bool,
-):
-
+) -> None:
+    """Tests the main `properjpg [input]` function."""
     # tmp_path.mkdir()
     img_path = Path(tmp_path, "test_image.jpg")
 
@@ -67,7 +67,7 @@ def test_single_file(
             assert img.size == (original_width, original_height)
 
 
-@pytest.mark.parametrize("output_path", [None, "custom_output"])
+@pytest.mark.parametrize("output_path", [None, "custom_output", "parent/image-0.jpg"])
 @pytest.mark.parametrize("max_width", [None, 100, 20])
 @pytest.mark.parametrize("max_height", [None, 100, 20])
 @pytest.mark.parametrize(
@@ -80,9 +80,11 @@ def test_directory(
     max_height: int,
     original_width: int,
     original_height: int,
-):
-    def dir_generator():
+) -> None:
+    """Tests the `properjpg -d` function."""
 
+    def dir_generator() -> tuple[Path, Path, Path]:
+        """Generates files and folders for the test."""
         parent_dir = Path(tmp_path, "parent")
         first_child = Path(parent_dir, "first_child")
         second_child = Path(first_child, "second_child")
@@ -116,21 +118,29 @@ def test_directory(
 
     args.append("-d")
 
-    run(args)
+    if output_path == "parent/image-0.jpg":
+        with pytest.raises(ValueError):
+            run(args)
+        return
+    else:
+        run(args)
 
     # Test folders
     assert processed_folder_path.is_dir()
     assert Path(processed_folder_path, first_child.name).is_dir()
     assert Path(processed_folder_path, first_child.name, second_child.name).is_dir()
     # Test files
-
-    pass
+    for index, dir in enumerate((parent_dir, first_child, second_child)):
+        for i in range(index + 1):
+            img_path = Path(dir, f"image-{i}.jpg")
+            assert img_path.is_file()
 
 
 ## Test Exceptions
 @pytest.mark.parametrize("input_path", ("invalid_filename.jpg", "invalid_folder"))
 @pytest.mark.parametrize("directory", (True, False))
-def test_wrong_input(tmp_path: Path, input_path: str, directory: bool):
+def test_wrong_input(tmp_path: Path, input_path: str, directory: bool) -> None:
+    """Tests for wrong input in `properjpg [input]`."""
     img_path = Path(tmp_path, input_path)
     args = [f"{img_path.resolve()}"]
 

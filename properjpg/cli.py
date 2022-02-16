@@ -126,12 +126,10 @@ def run(args=None):
         print("STARTING PROCESS")
         start_time = time.perf_counter()
 
-        if not input_path.is_file:
+        try:
+            assert input_path.is_file()
+        except:
             raise ValueError(f"The input path '{input_path.resolve()}' is not a file.")
-        if not output_path.is_file:
-            raise ValueError(
-                f"The output path '{output_path.resolve()}' is not a file."
-            )
 
         process_image(input_path, output_path, max_width, max_height, quality)
 

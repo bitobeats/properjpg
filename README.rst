@@ -151,7 +151,7 @@ Client
 
 Dev
 ...
-- Tests are incomplete.
+- 100% coverage, but tests are a mess.
 
 License
 -------

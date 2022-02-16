@@ -29,7 +29,7 @@ def test_single_file(
     original_height: int,
     img_exist: bool,
 ) -> None:
-
+    """Tests the main `properjpg [input]` function."""
     # tmp_path.mkdir()
     img_path = Path(tmp_path, "test_image.jpg")
 
@@ -81,8 +81,9 @@ def test_directory(
     original_width: int,
     original_height: int,
 ) -> None:
+    """Tests the `properjpg -d` function."""
     def dir_generator() -> tuple[Path, Path, Path]:
-
+        """Generates files and folders for the test."""
         parent_dir = Path(tmp_path, "parent")
         first_child = Path(parent_dir, "first_child")
         second_child = Path(first_child, "second_child")
@@ -133,6 +134,7 @@ def test_directory(
 @pytest.mark.parametrize("input_path", ("invalid_filename.jpg", "invalid_folder"))
 @pytest.mark.parametrize("directory", (True, False))
 def test_wrong_input(tmp_path: Path, input_path: str, directory: bool) -> None:
+    """Tests for wrong input in `properjpg [input]`."""
     img_path = Path(tmp_path, input_path)
     args = [f"{img_path.resolve()}"]
 

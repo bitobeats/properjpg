@@ -28,7 +28,7 @@ def test_single_file(
     original_width: int,
     original_height: int,
     img_exist: bool,
-):
+) -> None:
 
     # tmp_path.mkdir()
     img_path = Path(tmp_path, "test_image.jpg")
@@ -80,8 +80,8 @@ def test_directory(
     max_height: int,
     original_width: int,
     original_height: int,
-):
-    def dir_generator():
+) -> None:
+    def dir_generator() -> tuple[Path, Path, Path]:
 
         parent_dir = Path(tmp_path, "parent")
         first_child = Path(parent_dir, "first_child")
@@ -123,14 +123,16 @@ def test_directory(
     assert Path(processed_folder_path, first_child.name).is_dir()
     assert Path(processed_folder_path, first_child.name, second_child.name).is_dir()
     # Test files
-
-    pass
+    for index, dir in enumerate((parent_dir, first_child, second_child)):
+        for i in range(index + 1):
+            img_path = Path(dir, f"image-{i}.jpg")
+            assert img_path.is_file()
 
 
 ## Test Exceptions
 @pytest.mark.parametrize("input_path", ("invalid_filename.jpg", "invalid_folder"))
 @pytest.mark.parametrize("directory", (True, False))
-def test_wrong_input(tmp_path: Path, input_path: str, directory: bool):
+def test_wrong_input(tmp_path: Path, input_path: str, directory: bool) -> None:
     img_path = Path(tmp_path, input_path)
     args = [f"{img_path.resolve()}"]
 

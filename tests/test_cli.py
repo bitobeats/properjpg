@@ -67,7 +67,7 @@ def test_single_file(
             assert img.size == (original_width, original_height)
 
 
-@pytest.mark.parametrize("output_path", [None, "custom_output"])
+@pytest.mark.parametrize("output_path", [None, "custom_output", "parent/image-0.jpg"])
 @pytest.mark.parametrize("max_width", [None, 100, 20])
 @pytest.mark.parametrize("max_height", [None, 100, 20])
 @pytest.mark.parametrize(
@@ -117,7 +117,12 @@ def test_directory(
 
     args.append("-d")
 
-    run(args)
+    if output_path == "parent/image-0.jpg":
+        with pytest.raises(ValueError):
+            run(args)
+        return
+    else:
+        run(args)
 
     # Test folders
     assert processed_folder_path.is_dir()

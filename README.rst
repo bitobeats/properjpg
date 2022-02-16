@@ -1,4 +1,5 @@
 .. image:: https://img.shields.io/pypi/v/properjpg
+.. image:: https://img.shields.io/pypi/pyversions/properjpg
 .. image:: https://img.shields.io/pypi/wheel/properjpg
 .. image:: https://img.shields.io/github/workflow/status/vitorrloureiro/properjpg/Python%20application
 .. image:: https://img.shields.io/pypi/l/properjpg

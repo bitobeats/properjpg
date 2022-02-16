@@ -82,6 +82,7 @@ def test_directory(
     original_height: int,
 ) -> None:
     """Tests the `properjpg -d` function."""
+
     def dir_generator() -> tuple[Path, Path, Path]:
         """Generates files and folders for the test."""
         parent_dir = Path(tmp_path, "parent")

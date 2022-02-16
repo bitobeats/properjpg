@@ -130,7 +130,6 @@ def run(args=None):
             assert input_path.is_file()
         except:
             raise ValueError(f"The input path '{input_path.resolve()}' is not a file.")
-            
 
         process_image(input_path, output_path, max_width, max_height, quality)
 

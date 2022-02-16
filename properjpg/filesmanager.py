@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 
-def ignore_files(dir, files):
+def ignore_files(dir: str, files: list[str]):
     """
     Returns a list of files to ignore.
 

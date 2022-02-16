@@ -68,7 +68,6 @@ def run(args=None):
         ATTENTION: This is being tested. It may behave unpredictably.""",
     )
     args = parser.parse_args(args)
-    # print(args)
     input_path: Path = args.input
 
     max_width: int = args.max_width
@@ -89,11 +88,16 @@ def run(args=None):
         print("STARTING PROCESS")
         start_time = time.perf_counter()
 
-        if not input_path.is_dir():
+        try:
+            assert input_path.is_dir()
+        except:
             raise ValueError(
                 f"The input path '{input_path.resolve()}' is not a directory."
             )
-        if output_path.is_file():
+
+        try:
+            assert not output_path.is_file()
+        except:
             raise ValueError(
                 f"The output path '{output_path.resolve()}' is not a directory."
             )
@@ -126,12 +130,10 @@ def run(args=None):
         print("STARTING PROCESS")
         start_time = time.perf_counter()
 
-        if not input_path.is_file:
+        try:
+            assert input_path.is_file()
+        except:
             raise ValueError(f"The input path '{input_path.resolve()}' is not a file.")
-        if not output_path.is_file:
-            raise ValueError(
-                f"The output path '{output_path.resolve()}' is not a file."
-            )
 
         process_image(input_path, output_path, max_width, max_height, quality)
 

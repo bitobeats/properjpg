@@ -56,7 +56,7 @@ Features
 Smart resize
 ~~~~~~~~~~~~
 
-In either modes, it has a super cool 'smart resize' functionality.
+It has a super cool 'smart resize' functionality.
 It allows you to set a max width and height, and you can be sure that
 every image compressed by it will be no larger or taller than what you
 specify. This 'smart resize' mode makes sure to don't resize images
@@ -136,6 +136,17 @@ Roadmap
 - Improve Docs.
 - Improve UI (maybe switch to Click?).
 - Improve Performance.
+
+Known Issues
+~~~~~~~~~~~~
+
+Client
+......
+- None
+
+Dev
+...
+- Tests are incomplete.
 
 License
 -------

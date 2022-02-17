@@ -1,8 +1,10 @@
-.. image:: https://img.shields.io/pypi/v/properjpg
-.. image:: https://img.shields.io/pypi/pyversions/properjpg
-.. image:: https://img.shields.io/pypi/wheel/properjpg
-.. image:: https://img.shields.io/github/workflow/status/vitorrloureiro/properjpg/Python%20application
-.. image:: https://img.shields.io/pypi/l/properjpg
+.. |pypi| image:: https://img.shields.io/pypi/v/properjpg
+.. |pythonver| image:: https://img.shields.io/pypi/pyversions/properjpg
+.. |build| image:: https://img.shields.io/github/workflow/status/vitorrloureiro/properjpg/Python%20application
+.. |cov| image:: https://img.shields.io/codecov/c/github/vitorrloureiro/properjpg
+.. |wheel| image:: https://img.shields.io/pypi/wheel/properjpg
+.. |license| image:: https://img.shields.io/pypi/l/properjpg
+
 
 ProperJPG
 =========
@@ -12,6 +14,8 @@ ProperJPG
 ProperJPG is a super fast, lightweight CLI app that converts images to jpg. It also resizes them!
 
 |
+
+|pypi| |pythonver| |build| |cov| |wheel| |license|
 
 **Actively soliciting contributors!**
 
@@ -75,8 +79,8 @@ Multiprocessing
 This app uses the multiprocessing module to leverage all the power on your computer.
 It'll work faster if you have multiple cores.
 
-How it works?
--------------
+How does it work?
+-----------------
 **This app works in two modes:**
 
 - `"Single file" mode`_
@@ -116,7 +120,7 @@ Usage:
 Notes
 -----
 This software is in Alpha stage. A lot of things may change, including syntax and dependencies. I'm looking for help
-to improve this tool in terms of speed, features and code readability. Feel free to make suggestions and appoint improvements!.
+to improve this tool in terms of speed, features and code readability. Feel free to make suggestions and improvements!.
 Also feel free to help me improve the tests 😅
 
 The goal is to always keep the code with 100% test coverage.
@@ -138,9 +142,10 @@ and pytest. Pull requests must pass in all those tests.
 Roadmap
 ~~~~~~~
 
+- Improve UI (maybe switch to Click? Add Colorama?).
+   - Add a better progress view when using `"Directory" Mode`_
 - Improve testing.
 - Improve Docs.
-- Improve UI (maybe switch to Click?).
 - Improve Performance.
 
 Known Issues
@@ -153,6 +158,8 @@ Client
 Dev
 ...
 - 100% coverage, but tests are a mess.
+- Improve GitHub Action.
+- Create a workflow for :code:`poetry publish --build`
 
 License
 -------

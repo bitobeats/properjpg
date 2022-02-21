@@ -24,7 +24,7 @@ def process_image(
     :param reduce: The factor by which the image will be resized.
     """
     print("Processing image: ", image_path)
-    kwargs = dict()
+    kwargs: dict[str, int | bool] = dict()
     with Image.open(image_path) as image:
         if reduce != 0:
             image = reduce_image(image, reduce)
@@ -40,7 +40,7 @@ def process_image(
             kwargs["quality"] = quality
             kwargs["optimize"] = True
 
-        image.save(output_path.with_suffix(".jpg"), **kwargs)
+        image.save(output_path.with_suffix(".jpg"), **kwargs)  # type: ignore
 
 
 def resize_image(

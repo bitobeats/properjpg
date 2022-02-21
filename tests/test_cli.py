@@ -8,7 +8,7 @@ from properjpg.cli import run
 
 
 def test_version():
-    assert __version__ == "0.2.0"
+    assert __version__ == "0.3.0"
 
 
 @pytest.mark.parametrize("output_path", [None, "custom_output.jpg"])

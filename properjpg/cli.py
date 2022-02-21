@@ -72,6 +72,12 @@ def run(args=None):
         help="If set, the encoder will make an extra pass over the image in order to select optimal encoder settings.",
     )
     parser.add_argument(
+        "-p",
+        "--progressive",
+        action="store_true",
+        help="If set, the image will be saved as a progressive JPG.",
+    )
+    parser.add_argument(
         "-q",
         "--quality",
         type=int,
@@ -88,15 +94,13 @@ def run(args=None):
     max_height: int = args.max_height
     reduce: int = args.reduce
     optimize: bool = args.optimize
+    progressive: bool = args.progressive
     quality: int = args.quality
 
     print(optimize)
     if reduce != 0:
         if max_width != 0 or max_height != 0:
             raise ValueError("You can't use --re with --wi or --he.")
-
-    if not optimize:
-        optimize = False
 
     if args.output is None:
         if args.directory:
@@ -142,6 +146,7 @@ def run(args=None):
                     reduce=reduce,
                     optimize=optimize,
                     quality=quality,
+                    progressive=progressive,
                 ),
                 image_list,
             )
@@ -162,7 +167,14 @@ def run(args=None):
             raise ValueError(f"The input path '{input_path.resolve()}' is not a file.")
 
         process_image(
-            input_path, output_path, max_width, max_height, quality, reduce, optimize
+            input_path,
+            output_path,
+            max_width,
+            max_height,
+            quality,
+            reduce,
+            optimize,
+            progressive,
         )
 
         end_time = time.perf_counter()

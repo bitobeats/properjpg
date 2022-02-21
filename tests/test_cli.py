@@ -8,7 +8,7 @@ from properjpg.cli import run
 
 
 def test_version():
-    assert __version__ == "0.2.0"
+    assert __version__ == "0.3.0"
 
 
 @pytest.mark.parametrize("output_path", [None, "custom_output.jpg"])
@@ -150,6 +150,37 @@ def test_reduce(tmp_path: Path):
     run(args)
     with Image.open(img_path.with_stem("processed_img").resolve()) as image:
         assert image.size == (50, 50)
+
+
+def test_optimize(tmp_path: Path):
+    """Tests for "optimize" function."""
+    img_path = tmp_path.joinpath("test_image.jpg")
+    tmp_img = Image.new("RGB", (100, 100))
+    tmp_img.save(img_path)
+
+    args = [
+        f"{img_path.resolve()}",
+        f"{img_path.with_stem('processed_img').resolve()}",
+        "-o",
+    ]
+    run(args)
+    assert img_path.with_stem("processed_img").is_file()
+
+
+def test_progressive(tmp_path: Path):
+    """Tests for "progressive" function."""
+    img_path = tmp_path.joinpath("test_image.jpg")
+    tmp_img = Image.new("RGB", (100, 100))
+    tmp_img.save(img_path)
+
+    args = [
+        f"{img_path.resolve()}",
+        f"{img_path.with_stem('processed_img').resolve()}",
+        "-p",
+    ]
+    run(args)
+    with Image.open(img_path.with_stem("processed_img").resolve()) as image:
+        assert image.info["progression"] == True
 
 
 ## Test Exceptions

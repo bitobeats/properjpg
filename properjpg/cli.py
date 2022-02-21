@@ -59,20 +59,32 @@ def run(args=None):
         help="Sets the max height. Output images will be resized to this value or less.",
     )
     parser.add_argument(
-        "-q",
-        "--quality",
-        type=int,
-        default=0,
-        help="""[ALPHA] If set, the input will be compressed to the set value (using Pillow library).
-        
-        ATTENTION: This is being tested. It may behave unpredictably.""",
-    )
-    parser.add_argument(
         "-re",
         "--reduce",
         type=int,
         default=0,
         help='Set a value to turn "reduce" mode on. In this mode, the image will be resized by the x fator introduced in this flag.',
+    )
+    parser.add_argument(
+        "-o",
+        "--optimize",
+        action="store_true",
+        help="If set, the encoder will make an extra pass over the image in order to select optimal encoder settings.",
+    )
+    parser.add_argument(
+        "-p",
+        "--progressive",
+        action="store_true",
+        help="If set, the image will be saved as a progressive JPG.",
+    )
+    parser.add_argument(
+        "-q",
+        "--quality",
+        type=int,
+        default=0,
+        help="""[ALPHA] If set, the input will be compressed to the set value (using Pillow library).
+    
+    ATTENTION: This is being tested. It may behave unpredictably.""",
     )
 
     args = parser.parse_args(args)
@@ -80,9 +92,12 @@ def run(args=None):
 
     max_width: int = args.max_width
     max_height: int = args.max_height
-    quality: int = args.quality
     reduce: int = args.reduce
+    optimize: bool = args.optimize
+    progressive: bool = args.progressive
+    quality: int = args.quality
 
+    print(optimize)
     if reduce != 0:
         if max_width != 0 or max_height != 0:
             raise ValueError("You can't use --re with --wi or --he.")
@@ -128,8 +143,10 @@ def run(args=None):
                     process_image,
                     max_width=max_width,
                     max_height=max_height,
-                    quality=quality,
                     reduce=reduce,
+                    optimize=optimize,
+                    quality=quality,
+                    progressive=progressive,
                 ),
                 image_list,
             )
@@ -149,7 +166,16 @@ def run(args=None):
         except:
             raise ValueError(f"The input path '{input_path.resolve()}' is not a file.")
 
-        process_image(input_path, output_path, max_width, max_height, quality, reduce)
+        process_image(
+            input_path,
+            output_path,
+            max_width,
+            max_height,
+            quality,
+            reduce,
+            optimize,
+            progressive,
+        )
 
         end_time = time.perf_counter()
         print("")

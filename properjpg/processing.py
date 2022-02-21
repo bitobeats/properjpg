@@ -11,6 +11,7 @@ def process_image(
     max_width: int = 0,
     max_height: int = 0,
     quality: int = 0,
+    reduce: int = 0,
 ) -> None:
     """
     Process the image.
@@ -20,9 +21,13 @@ def process_image(
     :param max_width: The max width the processed image can have.
     :param max_height: The max height the processed image can have.
     :param quality: The quality when optimizing an image.
+    :param reduce: The factor by which the image will be resized.
     """
     print("Processing image: ", image_path)
+    kwargs: dict[str, int | bool] = dict()
     with Image.open(image_path) as image:
+        if reduce != 0:
+            image = reduce_image(image, reduce)
 
         if max_width != 0 or max_height != 0:
             ## If width or height is set.
@@ -30,11 +35,12 @@ def process_image(
 
         if not "jpg" in mimetypes.guess_type(image_path):
             image = image.convert("RGB")
+
         if quality != 0:
-            ## If Image quality is set.
-            image.save(output_path.with_suffix(".jpg"), quality=quality, optimize=True)
-        else:
-            image.save(output_path.with_suffix(".jpg"))
+            kwargs["quality"] = quality
+            kwargs["optimize"] = True
+
+        image.save(output_path.with_suffix(".jpg"), **kwargs)  # type: ignore
 
 
 def resize_image(
@@ -96,3 +102,12 @@ def resize_image(
 
     image = image.resize((new_width, new_height), Image.LANCZOS)
     return image
+
+
+def reduce_image(image: Image.Image, factor: int) -> Image.Image:
+    """Reduce images by percentage.
+
+    :param image: The image to be reduced
+    :param factor: The "x" times the image will be resized to."""
+    result = image.reduce(factor)
+    return result

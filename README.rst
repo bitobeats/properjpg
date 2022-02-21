@@ -121,7 +121,7 @@ Usage:
 Changes
 -------
 
-v0.1.2
+v0.2.0
 ~~~~~~
 
 - Added "reduce" mode, where you can resize images by a factor.

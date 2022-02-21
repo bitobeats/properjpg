@@ -8,7 +8,7 @@ from properjpg.cli import run
 
 
 def test_version():
-    assert __version__ == "0.1.1"
+    assert __version__ == "0.2.0"
 
 
 @pytest.mark.parametrize("output_path", [None, "custom_output.jpg"])
@@ -155,7 +155,7 @@ def test_reduce(tmp_path: Path):
 ## Test Exceptions
 @pytest.mark.parametrize("input_path", ("invalid_filename.jpg", "invalid_folder"))
 @pytest.mark.parametrize("directory", (True, False))
-def test_wrong_input(tmp_path: Path, input_path: str, directory: bool) -> None:
+def test_incorrect_input(tmp_path: Path, input_path: str, directory: bool) -> None:
     """Tests for wrong input in `properjpg [input]`."""
     img_path = Path(tmp_path, input_path)
     args = [f"{img_path.resolve()}"]
@@ -164,4 +164,11 @@ def test_wrong_input(tmp_path: Path, input_path: str, directory: bool) -> None:
         args.append(f"-d")
 
     with pytest.raises((ValueError, FileNotFoundError)):
+        run(args)
+
+
+def test_incorrect_reduce(tmp_path: Path):
+    """Tests for "reduce" function."""
+    args = ["whatever", "whatever", "-he=100", "-re=2"]
+    with pytest.raises((ValueError)):
         run(args)

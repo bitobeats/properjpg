@@ -12,6 +12,7 @@ def process_image(
     max_height: int = 0,
     quality: int = 0,
     reduce: int = 0,
+    optimize: bool = False,
 ) -> None:
     """
     Process the image.
@@ -38,6 +39,7 @@ def process_image(
 
         if quality != 0:
             kwargs["quality"] = quality
+        if optimize:
             kwargs["optimize"] = True
 
         image.save(output_path.with_suffix(".jpg"), **kwargs)  # type: ignore

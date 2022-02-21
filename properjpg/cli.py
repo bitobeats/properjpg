@@ -67,12 +67,25 @@ def run(args=None):
         
         ATTENTION: This is being tested. It may behave unpredictably.""",
     )
+    parser.add_argument(
+        "-re",
+        "--reduce",
+        type=int,
+        default=0,
+        help='Set a value to turn "reduce" mode on. In this mode, the image will be resized by the x fator introduced in this flag.',
+    )
+
     args = parser.parse_args(args)
     input_path: Path = args.input
 
     max_width: int = args.max_width
     max_height: int = args.max_height
     quality: int = args.quality
+    reduce: int = args.reduce
+
+    if reduce != 0:
+        if max_width != 0 or max_height != 0:
+            raise ValueError("You can't use --re with --wi or --he.")
 
     if args.output is None:
         if args.directory:
@@ -116,6 +129,7 @@ def run(args=None):
                     max_width=max_width,
                     max_height=max_height,
                     quality=quality,
+                    reduce=reduce,
                 ),
                 image_list,
             )
@@ -135,7 +149,7 @@ def run(args=None):
         except:
             raise ValueError(f"The input path '{input_path.resolve()}' is not a file.")
 
-        process_image(input_path, output_path, max_width, max_height, quality)
+        process_image(input_path, output_path, max_width, max_height, quality, reduce)
 
         end_time = time.perf_counter()
         print("")

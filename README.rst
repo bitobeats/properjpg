@@ -62,6 +62,7 @@ Features
 
 - `Smart resize`_
 - `Multiprocessing`_
+- `Progressive JPG`_
 
 Smart resize
 ~~~~~~~~~~~~
@@ -72,6 +73,11 @@ every image compressed by it will be no larger or taller than what you
 specify. This 'smart resize' mode makes sure to don't resize images
 that doesn't need to, and also takes in account if it's best for an
 image to be resized based on it's width or height.
+
+Progressive JPG
+~~~~~~~~~~~~~~~
+
+You can save your images as progressive JPG. Learn more `here <https://www.thewebmaster.com/develop/articles/how-progressive-jpegs-can-speed-up-your-website/>`_
 
 Multiprocessing
 ~~~~~~~~~~~~~~~
@@ -85,10 +91,6 @@ How does it work?
 
 - `"Single file" mode`_
 - `"Directory" mode`_
-
-
-
-
 
 "Single file" mode
 ~~~~~~~~~~~~~~~~~~
@@ -122,6 +124,8 @@ Commands
 
 -h    Shows the help screen.
 -d    Turns on directory mode.
+-o    If set, the encoder will make an extra pass in order to select optimal encoder settings.
+-p    If set, the image will be saved as a progressive JPG.
 -wi   Sets the max width
 -he   Sets the max height
 -re   Turns on "reduce" mode and set the factore to which the images are to be resized.
@@ -131,6 +135,12 @@ Commands
 
 Changes
 -------
+
+v0.3.0
+~~~~~~
+
+- Added support for saving progressive jpgs.
+- Decoupled "optimize" and "quality"
 
 v0.2.0
 ~~~~~~

@@ -136,6 +136,22 @@ def test_directory(
             assert img_path.is_file()
 
 
+def test_reduce(tmp_path: Path):
+    """Tests for "reduce" function."""
+    img_path = tmp_path.joinpath("test_image.jpg")
+    tmp_img = Image.new("RGB", (100, 100))
+    tmp_img.save(img_path)
+
+    args = [
+        f"{img_path.resolve()}",
+        f"{img_path.with_stem('processed_img').resolve()}",
+        "-re=2",
+    ]
+    run(args)
+    with Image.open(img_path.with_stem("processed_img").resolve()) as image:
+        assert image.size == (50, 50)
+
+
 ## Test Exceptions
 @pytest.mark.parametrize("input_path", ("invalid_filename.jpg", "invalid_folder"))
 @pytest.mark.parametrize("directory", (True, False))

@@ -117,6 +117,15 @@ Usage:
    properjpg [input_path] [output_path] -d -wi=[max_width] -he=[max_height]
 
 
+
+Changes
+-------
+
+v0.1.2
+~~~~~~
+
+- Added "reduce" mode, where you can resize images by a factor.
+
 Notes
 -----
 This software is in Alpha stage. A lot of things may change, including syntax and dependencies. I'm looking for help

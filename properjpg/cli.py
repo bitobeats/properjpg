@@ -83,7 +83,7 @@ def run(args=None):
         "--quality",
         type=int,
         default=0,
-        help="""[ALPHA] If set, the input will be compressed to the set value (using Pillow library).
+        help="""If set, the input will be compressed to the set value (using Pillow library). Choose a value from 1 to 95.
     
     ATTENTION: This is being tested. It may behave unpredictably.""",
     )

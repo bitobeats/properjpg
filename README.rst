@@ -97,7 +97,7 @@ How does it work?
 ~~~~~~~~~~~~~~~~~~
 Input an image path and the desired output path.
 
-Usage:
+Basic usage:
    
 ::
 
@@ -113,7 +113,7 @@ resize, if you setted it to) them.
 
 ProperJPG uses multiprocessing to speed up the process.
 
-Usage:
+Basic usage:
 
 ::
 
@@ -126,7 +126,8 @@ Commands
 -h    Shows the help screen.
 -d    Turns on directory mode.
 -o    If set, the encoder will make an extra pass in order to select optimal encoder settings.
--np   If set, disables progressive jpeg and saves as baseline instead..
+-q    If set, the input will be compressed to the set value (using Pillow library). Choose a value from 1 to 95.
+-np   If set, disables progressive jpeg and saves as baseline instead.
 -wi   Sets the max width.
 -he   Sets the max height.
 -re   Turns on "reduce" mode and set the factore to which the images are to be resized.
@@ -142,6 +143,7 @@ v0.3.1
 ~~~~~~
 - Added `-v` flag.
 - Changed the behaviour of progressive jpeg. Now, progressive jpeg is the default. Use the `-np` flag to disable it.
+- Default quality is now 85
 
 v0.3.0
 ~~~~~~

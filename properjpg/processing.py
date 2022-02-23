@@ -40,6 +40,8 @@ def process_image(
 
         if quality != 0:
             kwargs["quality"] = quality
+        else:
+            kwargs["quality"] = 85
         if optimize:
             kwargs["optimize"] = True
         if no_progressive:

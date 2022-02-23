@@ -77,7 +77,8 @@ image to be resized based on it's width or height.
 Progressive JPG
 ~~~~~~~~~~~~~~~
 
-You can save your images as progressive JPG. Learn more `here <https://www.thewebmaster.com/develop/articles/how-progressive-jpegs-can-speed-up-your-website/>`_
+Images are saved as progressive JPEG as default. You can disable this behaviour
+with `-np` flag. Learn more `here <https://www.thewebmaster.com/develop/articles/how-progressive-jpegs-can-speed-up-your-website/>`_
 
 Multiprocessing
 ~~~~~~~~~~~~~~~
@@ -125,11 +126,11 @@ Commands
 -h    Shows the help screen.
 -d    Turns on directory mode.
 -o    If set, the encoder will make an extra pass in order to select optimal encoder settings.
--p    If set, the image will be saved as a progressive JPG.
--wi   Sets the max width
--he   Sets the max height
+-np   If set, disables progressive jpeg and saves as baseline instead..
+-wi   Sets the max width.
+-he   Sets the max height.
 -re   Turns on "reduce" mode and set the factore to which the images are to be resized.
--v    Shows ProperJPG's version
+-v    Shows ProperJPG's version.
 
 
 
@@ -137,11 +138,16 @@ Commands
 Changes
 -------
 
+v0.3.1
+~~~~~~
+- Added `-v` flag.
+- Changed the behaviour of progressive jpeg. Now, progressive jpeg is the default. Use the `-np` flag to disable it.
+
 v0.3.0
 ~~~~~~
 
 - Added support for saving progressive jpgs.
-- Decoupled "optimize" and "quality"
+- Decoupled "optimize" and "quality".
 
 v0.2.0
 ~~~~~~

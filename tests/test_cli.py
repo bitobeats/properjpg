@@ -167,8 +167,8 @@ def test_optimize(tmp_path: Path):
     assert img_path.with_stem("processed_img").is_file()
 
 
-def test_progressive(tmp_path: Path):
-    """Tests for "progressive" function."""
+def test_no_progressive(tmp_path: Path):
+    """Tests for "--no-progressive" function."""
     img_path = tmp_path.joinpath("test_image.jpg")
     tmp_img = Image.new("RGB", (100, 100))
     tmp_img.save(img_path)
@@ -176,11 +176,12 @@ def test_progressive(tmp_path: Path):
     args = [
         f"{img_path.resolve()}",
         f"{img_path.with_stem('processed_img').resolve()}",
-        "-p",
+        "-np",
     ]
     run(args)
     with Image.open(img_path.with_stem("processed_img").resolve()) as image:
-        assert image.info["progression"] == True
+        # assert image.info["progression"] == True
+        assert not "progression" in image.info
 
 
 ## Test Exceptions

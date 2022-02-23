@@ -129,6 +129,7 @@ Commands
 -wi   Sets the max width
 -he   Sets the max height
 -re   Turns on "reduce" mode and set the factore to which the images are to be resized.
+-v    Shows ProperJPG's version
 
 
 

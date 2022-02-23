@@ -6,6 +6,7 @@ from functools import partial
 from pathlib import Path
 from shutil import copytree
 
+from . import __version__
 from .filesmanager import generate_filename, get_input_images, ignore_files
 from .processing import process_image
 
@@ -85,6 +86,9 @@ def run(args=None):
         help="""[ALPHA] If set, the input will be compressed to the set value (using Pillow library).
     
     ATTENTION: This is being tested. It may behave unpredictably.""",
+    )
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"ProperJPG {__version__}"
     )
 
     args = parser.parse_args(args)

@@ -1,6 +1,7 @@
 .. |pypi| image:: https://img.shields.io/pypi/v/properjpg
 .. |pythonver| image:: https://img.shields.io/pypi/pyversions/properjpg
-.. |build| image:: https://img.shields.io/github/workflow/status/vitorrloureiro/properjpg/Python%20application
+.. |downloads| image:: https://img.shields.io/pypi/dm/properjpg
+.. |build| image:: https://img.shields.io/github/workflow/status/vitorrloureiro/properjpg/Tests
 .. |cov| image:: https://img.shields.io/codecov/c/github/vitorrloureiro/properjpg
 .. |wheel| image:: https://img.shields.io/pypi/wheel/properjpg
 .. |license| image:: https://img.shields.io/pypi/l/properjpg
@@ -15,7 +16,7 @@ ProperJPG is a super fast, lightweight CLI app that converts images to jpg. It a
 
 |
 
-|pypi| |pythonver| |build| |cov| |wheel| |license|
+|pypi| |pythonver| |build| |cov| |wheel| |downloads| |license|
 
 **Actively soliciting contributors!**
 

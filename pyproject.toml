@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "properjpg"
-version = "0.3.0"
+version = "0.3.1"
 description = "Make any image ready for the web. Fast."
 authors = [
     "Vitor Loureiro <miseravel.cruller-0o@icloud.com>"

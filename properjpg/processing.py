@@ -13,7 +13,7 @@ def process_image(
     quality: int = 0,
     reduce: int = 0,
     optimize: bool = False,
-    progressive: bool = False,
+    no_progressive: bool = False,
 ) -> None:
     """
     Process the image.
@@ -40,9 +40,13 @@ def process_image(
 
         if quality != 0:
             kwargs["quality"] = quality
+        else:
+            kwargs["quality"] = 85
         if optimize:
             kwargs["optimize"] = True
-        if progressive:
+        if no_progressive:
+            kwargs["progressive"] = False
+        else:
             kwargs["progressive"] = True
 
         image.save(output_path.with_suffix(".jpg"), **kwargs)  # type: ignore

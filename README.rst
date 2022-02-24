@@ -1,6 +1,7 @@
 .. |pypi| image:: https://img.shields.io/pypi/v/properjpg
 .. |pythonver| image:: https://img.shields.io/pypi/pyversions/properjpg
-.. |build| image:: https://img.shields.io/github/workflow/status/vitorrloureiro/properjpg/Python%20application
+.. |downloads| image:: https://img.shields.io/pypi/dm/properjpg
+.. |build| image:: https://img.shields.io/github/workflow/status/vitorrloureiro/properjpg/Tests
 .. |cov| image:: https://img.shields.io/codecov/c/github/vitorrloureiro/properjpg
 .. |wheel| image:: https://img.shields.io/pypi/wheel/properjpg
 .. |license| image:: https://img.shields.io/pypi/l/properjpg
@@ -15,7 +16,7 @@ ProperJPG is a super fast, lightweight CLI app that converts images to jpg. It a
 
 |
 
-|pypi| |pythonver| |build| |cov| |wheel| |license|
+|pypi| |pythonver| |build| |cov| |wheel| |downloads| |license|
 
 **Actively soliciting contributors!**
 
@@ -77,7 +78,8 @@ image to be resized based on it's width or height.
 Progressive JPG
 ~~~~~~~~~~~~~~~
 
-You can save your images as progressive JPG. Learn more `here <https://www.thewebmaster.com/develop/articles/how-progressive-jpegs-can-speed-up-your-website/>`_
+Images are saved as progressive JPEG as default. You can disable this behaviour
+with `-np` flag. Learn more `here <https://www.thewebmaster.com/develop/articles/how-progressive-jpegs-can-speed-up-your-website/>`_
 
 Multiprocessing
 ~~~~~~~~~~~~~~~
@@ -96,7 +98,7 @@ How does it work?
 ~~~~~~~~~~~~~~~~~~
 Input an image path and the desired output path.
 
-Usage:
+Basic usage:
    
 ::
 
@@ -112,7 +114,7 @@ resize, if you setted it to) them.
 
 ProperJPG uses multiprocessing to speed up the process.
 
-Usage:
+Basic usage:
 
 ::
 
@@ -125,10 +127,12 @@ Commands
 -h    Shows the help screen.
 -d    Turns on directory mode.
 -o    If set, the encoder will make an extra pass in order to select optimal encoder settings.
--p    If set, the image will be saved as a progressive JPG.
--wi   Sets the max width
--he   Sets the max height
+-q    If set, the input will be compressed to the set value (using Pillow library). Choose a value from 1 to 95.
+-np   If set, disables progressive jpeg and saves as baseline instead.
+-wi   Sets the max width.
+-he   Sets the max height.
 -re   Turns on "reduce" mode and set the factore to which the images are to be resized.
+-v    Shows ProperJPG's version.
 
 
 
@@ -136,11 +140,17 @@ Commands
 Changes
 -------
 
+v0.3.1
+~~~~~~
+- Added `-v` flag.
+- Changed the behaviour of progressive jpeg. Now, progressive jpeg is the default. Use the `-np` flag to disable it.
+- Default quality is now 85
+
 v0.3.0
 ~~~~~~
 
 - Added support for saving progressive jpgs.
-- Decoupled "optimize" and "quality"
+- Decoupled "optimize" and "quality".
 
 v0.2.0
 ~~~~~~

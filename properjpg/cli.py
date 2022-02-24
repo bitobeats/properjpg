@@ -6,6 +6,7 @@ from functools import partial
 from pathlib import Path
 from shutil import copytree
 
+from . import __version__
 from .filesmanager import generate_filename, get_input_images, ignore_files
 from .processing import process_image
 
@@ -72,19 +73,22 @@ def run(args=None):
         help="If set, the encoder will make an extra pass over the image in order to select optimal encoder settings.",
     )
     parser.add_argument(
-        "-p",
-        "--progressive",
+        "-np",
+        "--no-progressive",
         action="store_true",
-        help="If set, the image will be saved as a progressive JPG.",
+        help="If set, disables progressive jpeg and saves as baseline instead.",
     )
     parser.add_argument(
         "-q",
         "--quality",
         type=int,
         default=0,
-        help="""[ALPHA] If set, the input will be compressed to the set value (using Pillow library).
+        help="""If set, the input will be compressed to the set value (using Pillow library). Choose a value from 1 to 95.
     
     ATTENTION: This is being tested. It may behave unpredictably.""",
+    )
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"ProperJPG {__version__}"
     )
 
     args = parser.parse_args(args)
@@ -94,10 +98,9 @@ def run(args=None):
     max_height: int = args.max_height
     reduce: int = args.reduce
     optimize: bool = args.optimize
-    progressive: bool = args.progressive
+    no_progressive: bool = args.no_progressive
     quality: int = args.quality
 
-    print(optimize)
     if reduce != 0:
         if max_width != 0 or max_height != 0:
             raise ValueError("You can't use --re with --wi or --he.")
@@ -146,7 +149,7 @@ def run(args=None):
                     reduce=reduce,
                     optimize=optimize,
                     quality=quality,
-                    progressive=progressive,
+                    no_progressive=no_progressive,
                 ),
                 image_list,
             )
@@ -174,7 +177,7 @@ def run(args=None):
             quality,
             reduce,
             optimize,
-            progressive,
+            no_progressive,
         )
 
         end_time = time.perf_counter()

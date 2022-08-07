@@ -109,7 +109,7 @@ def resize_image(
         max_width, max_height, old_width, old_height
     )
 
-    image = image.resize((new_width, new_height), Image.LANCZOS)
+    image = image.resize((new_width, new_height), Image.Resampling.LANCZOS)
     return image
 
 

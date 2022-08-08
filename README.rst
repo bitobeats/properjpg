@@ -140,11 +140,20 @@ Commands
 Changes
 -------
 
+v0.3.3
+~~~~~~
+- Fixed an issue where images could lose their orientation.
+
+v0.3.2
+~~~~~~
+- Update deps.
+- Fixed a pillow warning.
+
 v0.3.1
 ~~~~~~
 - Added `-v` flag.
 - Changed the behaviour of progressive jpeg. Now, progressive jpeg is the default. Use the `-np` flag to disable it.
-- Default quality is now 85
+- Default quality is now 85.
 
 v0.3.0
 ~~~~~~

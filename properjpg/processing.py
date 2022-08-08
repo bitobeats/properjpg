@@ -2,7 +2,7 @@ import mimetypes
 from functools import cache
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 
 def process_image(
@@ -24,10 +24,16 @@ def process_image(
     :param max_height: The max height the processed image can have.
     :param quality: The quality when optimizing an image.
     :param reduce: The factor by which the image will be resized.
+    :param optimize: If set to true, encoder will make an extra pass over the imagei n order to select optimal encoder settings.
+    :param no_progressive: If set to true, disables progressive JPEG and saves as baseline instead.
+    :param keep_meta: If set to true, encoder will keep image meta info.
     """
     print("Processing image: ", image_path)
     kwargs: dict[str, int | bool] = dict()
     with Image.open(image_path) as image:
+
+        image = ImageOps.exif_transpose(image)
+
         if reduce != 0:
             image = reduce_image(image, reduce)
 

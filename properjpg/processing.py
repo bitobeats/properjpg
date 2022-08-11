@@ -26,7 +26,6 @@ def process_image(
     :param reduce: The factor by which the image will be resized.
     :param optimize: If set to true, encoder will make an extra pass over the imagei n order to select optimal encoder settings.
     :param no_progressive: If set to true, disables progressive JPEG and saves as baseline instead.
-    :param keep_meta: If set to true, encoder will keep image meta info.
     """
     print("Processing image: ", image_path)
     kwargs: dict[str, int | bool] = dict()

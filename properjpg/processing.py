@@ -58,6 +58,48 @@ def process_image(
         image.save(output_path.with_suffix(".jpg"), **kwargs)  # type: ignore
 
 
+@cache
+def get_proper_sizes(
+    max_width: int, max_height: int, old_width: int, old_height: int
+) -> tuple[int, int]:
+
+    new_width, new_height = max_width, max_height
+
+    if max_width == 0:
+        """If width is not set."""
+        new_width = round(old_width * (max_height / old_height))
+    elif max_height == 0:
+        """If height is not set."""
+        new_height = round(old_height * (max_width / old_width))
+    else:
+        if old_width > old_height:
+            """If image's original width is bigger than original height."""
+            new_height = round(old_height * (new_width / old_width))
+        elif old_height > old_width:
+            """If image's original height is bigger than original width."""
+            new_width = round(old_width * (new_height / old_height))
+        elif old_width == old_height:
+            """If image's original width and height are the same."""
+            if max_width > max_height:
+                """If new width is bigger than new height."""
+                new_width = max_height
+            elif max_height > max_width:
+                """If new height is bigger than new width."""
+                new_height = max_height
+
+    if new_width > max_width and max_width != 0:
+        new_width = max_width
+        new_height = round(old_height * (new_width / old_width))
+    if new_height > max_height and max_height != 0:
+        new_height = max_height
+        new_width = round(old_width * (new_height / old_height))
+
+    new_width = new_width
+    new_height = new_height
+
+    return new_width, new_height
+
+
 def resize_image(
     image: Image.Image, max_width: int = 0, max_height: int = 0
 ) -> Image.Image:
@@ -69,47 +111,6 @@ def resize_image(
     :param max_height: The max height the processed image can have.
     """
     old_width, old_height = image.size[0], image.size[1]
-
-    @cache
-    def get_proper_sizes(
-        max_width: int, max_height: int, old_width: int, old_height: int
-    ) -> tuple[int, int]:
-
-        new_width, new_height = max_width, max_height
-
-        if max_width == 0:
-            """If width is not set."""
-            new_width = round(old_width * (max_height / old_height))
-        elif max_height == 0:
-            """If height is not set."""
-            new_height = round(old_height * (max_width / old_width))
-        else:
-            if old_width > old_height:
-                """If image's original width is bigger than original height."""
-                new_height = round(old_height * (new_width / old_width))
-            elif old_height > old_width:
-                """If image's original height is bigger than original width."""
-                new_width = round(old_width * (new_height / old_height))
-            elif old_width == old_height:
-                """If image's original width and height are the same."""
-                if max_width > max_height:
-                    """If new width is bigger than new height."""
-                    new_width = max_height
-                elif max_height > max_width:
-                    """If new height is bigger than new width."""
-                    new_height = max_height
-
-        if new_width > max_width and max_width != 0:
-            new_width = max_width
-            new_height = round(old_height * (new_width / old_width))
-        if new_height > max_height and max_height != 0:
-            new_height = max_height
-            new_width = round(old_width * (new_height / old_height))
-
-        new_width = new_width
-        new_height = new_height
-
-        return new_width, new_height
 
     new_width, new_height = get_proper_sizes(
         max_width, max_height, old_width, old_height

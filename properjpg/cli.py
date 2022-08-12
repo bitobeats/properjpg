@@ -135,10 +135,10 @@ def run(args=None):
 
         copytree(input_path, output_path, ignore=ignore_files)
 
-        image_list = [
+        image_tuple = tuple(
             (image, save_path)
             for image, save_path in get_input_images(input_path, output_path)
-        ]
+        )
 
         with mp.Pool() as pool:
             pool.starmap(
@@ -151,14 +151,14 @@ def run(args=None):
                     quality=quality,
                     no_progressive=no_progressive,
                 ),
-                image_list,
+                image_tuple,
             )
 
         end_time = time.perf_counter()
         print("")
         print("DONE")
         print(f"Elapsed time: {end_time - start_time}")
-        print(f"Images processed: {len(image_list)}")
+        print(f"Images processed: {len(image_tuple)}")
 
     else:
         print("STARTING PROCESS")

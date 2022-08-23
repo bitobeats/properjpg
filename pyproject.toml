@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "properjpg"
 version = "0.3.4"
-description = "Make any image ready for the web. Fast."
+description = "CLI tool to convert almost any image to optimized JPEGs."
 authors = [
     "Vitor Loureiro <miseravel.cruller-0o@icloud.com>"
     ]
@@ -20,7 +20,7 @@ readme = "README.rst"
 homepage = "https://github.com/vitorrloureiro/properjpg"
 repository = "https://github.com/vitorrloureiro/properjpg"
 documentation = "https://github.com/vitorrloureiro/properjpg"
-keywords = ["image", "optimize", "jpg", "conversor", "web"]
+keywords = ["image", "optimize", "jpg", "conversor", "web", "cli"]
 
 
 

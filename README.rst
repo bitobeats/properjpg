@@ -12,6 +12,10 @@ ProperJPG
 
 *Convert images to optimized JPEGs. Fast.*
 
+|
+
+|pypi| |pythonver| |build| |cov| |wheel| |downloads| |license|
+
 ProperJPG is a super fast, lightweight CLI app that converts and compress images to optimized jpg.If you like, it can also resize them!
 
 If you need a tool to batch convert and optimize images
@@ -24,9 +28,6 @@ ProperJPG allows you to set a max width/height so any images that crosses the th
 It also allows you to input a folder with multiple images. In this case, ProperJPG clones the original folder structure in the output path.
 
 
-|
-
-|pypi| |pythonver| |build| |cov| |wheel| |downloads| |license|
 
 **Actively soliciting contributors!**
 

@@ -1,10 +1,8 @@
 [tool.poetry]
 name = "properjpg"
-version = "0.3.4"
+version = "0.3.5"
 description = "CLI tool to convert almost any image to optimized JPEGs.Fast."
-authors = [
-    "Vitor Loureiro <miseravel.cruller-0o@icloud.com>"
-    ]
+authors = ["Vitor Loureiro <miseravel.cruller-0o@icloud.com>"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: End Users/Desktop",
@@ -13,7 +11,7 @@ classifiers = [
     "Topic :: Utilities",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
-    "Typing :: Typed"
+    "Typing :: Typed",
 ]
 license = "MIT"
 readme = "README.rst"
@@ -23,10 +21,9 @@ documentation = "https://github.com/vitorrloureiro/properjpg"
 keywords = ["image", "optimize", "jpg", "conversor", "web", "cli"]
 
 
-
 [tool.poetry.dependencies]
 python = "^3.10"
-Pillow = "^9.0.1"
+Pillow = "^10.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0"

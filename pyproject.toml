@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "properjpg"
-version = "0.3.5"
+version = "0.3.6"
 description = "CLI tool to convert almost any image to optimized JPEGs.Fast."
 authors = ["Vitor Loureiro <miseravel.cruller-0o@icloud.com>"]
 classifiers = [
